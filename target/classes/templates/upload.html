@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>字幕上传</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-4">上传字幕文件并生成音频</h2>
+    <form method="post" enctype="multipart/form-data" th:action="@{/api/convert-to-audio}">
+        <div class="form-group">
+            <label for="file">选择字幕文件 (.srt)</label>
+            <input type="file" class="form-control" id="file" name="file" required>
+        </div>
+        <button type="submit" class="btn btn-primary">上传并生成音频</button>
+        <button type="button" onclick="uploadAndDownload()">下载文件</button>
+    </form>
+</div>
+</body>
+</html>
+<script>
+    function uploadAndDownload() {
+        const formData = new FormData();
+        const fileInput = document.getElementById('fileInput');
+        formData.append("file", fileInput.files[0]);
+
+        // 发起POST请求，将文件上传并下载音频文件
+        fetch('/api/convert-and-download', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.blob())
+            .then(blob => {
+                // 创建一个下载链接
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+
+                // 设置下载文件名
+                a.download = 'output_local.wav';
+                document.body.appendChild(a);
+                a.click();
+
+                // 移除临时链接
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>

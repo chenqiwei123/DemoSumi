@@ -1,0 +1,15 @@
+spring:
+  thymeleaf:
+    cache: false # 开发时关闭缓存，不然看不到实时页面
+
+  datasource:
+    default:
+      url: jdbc:mysql://101.35.56.5:3306/GetVideo
+      username: root
+      password: Chen123456...
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    secondary:
+      url: jdbc:mysql://101.35.56.5:3306/MyUploader
+      username: root
+      password: Chen123456...
+      driver-class-name: com.mysql.cj.jdbc.Driver
