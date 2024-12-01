@@ -1,8 +1,17 @@
 # 有项目问题和说明-公众号联系我
 ### 【公众号里面回复：联系】
 
-![img.png](Image%2Fimg.png)
- 
+![runwsh.png](./Image/runwsh.png)
+
+### 知识点分享
+
+- 高并发
+- Redis
+- Lock
+- 动态数据源
+- 自定义注解
+- 切面
+
 ### **程序设计博客:** [https://www.runwsh.com](https://www.runwsh.com)
  
 ### **程序源码地址:** [http://blog.runwsh.com:86/runwsh](http://blog.runwsh.com:86/runwsh)
